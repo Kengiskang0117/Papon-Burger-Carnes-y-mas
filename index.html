@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- @@TITULO -->
+<title>Papon Burger &amp; Grill · Carne magra a la parrilla</title>
+<meta name="description" content="Hamburguesas y parrilla de carne magra en Santo Domingo Este. Pide para llevar, delivery o ven a comer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<!--
+  PÁGINA WEB DE DEMO · PAPON BURGER & GRILL
+  Para cambiarla, busca con Ctrl+F:
+  @@NEGOCIO   nombre, WhatsApp, dirección, horario, redes, enlace del menú
+  @@COLORES   colores de la página
+  @@PORTADA   foto y frase grande de arriba
+  @@NOSOTROS  la historia del negocio
+  @@DESTACADOS los productos que salen en la página
+  @@EVENTOS   la sección de eventos y oficinas
+-->
+<style>
+/* @@COLORES */
+:root{
+  --fondo:#0F0F0F; --fondo-2:#151515; --tarjeta:#1A1A1A; --borde:#2B2B2B;
+  --texto:#F5F1E8; --suave:#A8A29A;
+  --acento:#E1262D; --acento-texto:#FF4D55; --sobre-acento:#FFFFFF;
+  --display:'Bebas Neue',Impact,sans-serif; --cuerpo:'DM Sans',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--fondo);color:var(--texto);font-family:var(--cuerpo);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+img.roto{visibility:hidden}
+a{color:inherit}
+.contenedor{max-width:1160px;margin:0 auto;padding:0 20px}
+.display{font-family:var(--display);font-weight:400;letter-spacing:.03em;line-height:.95;margin:0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--acento-texto)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 24px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;border:2px solid transparent;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.prin{background:var(--acento);color:var(--sobre-acento)}
+.btn.sec{border-color:var(--texto);color:var(--texto)}
+:focus-visible{outline:2px solid var(--acento-texto);outline-offset:3px}
+
+/* Navegación */
+.nav{position:sticky;top:0;z-index:30;background:rgba(15,15,15,.92);backdrop-filter:blur(10px);border-bottom:1px solid #1F1F1F}
+.nav .contenedor{display:flex;align-items:center;gap:16px;height:72px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marca img{width:46px;height:46px;border-radius:50%}
+.marca span{font-family:var(--display);font-size:26px;letter-spacing:.04em}
+.marca span em{font-style:normal;color:var(--acento-texto)}
+.enlaces{display:flex;gap:26px;margin-left:auto}
+.enlaces a{text-decoration:none;font-weight:500;font-size:15px;color:#DDD6CB}
+.enlaces a:hover{color:var(--acento-texto)}
+.nav .btn{height:44px;padding:0 18px;font-size:14px}
+.abrir-menu{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--borde);background:var(--tarjeta);color:var(--texto);cursor:pointer}
+@media (max-width:860px){
+  .enlaces{position:absolute;top:72px;left:0;right:0;flex-direction:column;gap:0;background:#121212;border-bottom:1px solid var(--borde);display:none}
+  .enlaces.abierto{display:flex}
+  .enlaces a{padding:16px 20px;border-top:1px solid #1F1F1F}
+  .abrir-menu{display:flex;align-items:center;justify-content:center}
+  .nav .btn{display:none}
+}
+
+/* @@PORTADA */
+.portada{position:relative;min-height:min(86vh,760px);display:flex;align-items:flex-end;overflow:hidden}
+.portada img.fondo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portada::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,15,15,.25) 0%,rgba(15,15,15,.55) 45%,var(--fondo) 100%)}
+.portada .contenedor{position:relative;z-index:1;padding-bottom:64px;width:100%}
+.portada h1{font-size:clamp(56px,11vw,132px);max-width:900px}
+.portada h1 em{font-style:normal;color:var(--acento-texto)}
+.portada p{font-size:clamp(17px,2.2vw,21px);color:#E6E0D6;max-width:560px;margin:16px 0 26px}
+.acciones{display:flex;flex-wrap:wrap;gap:12px}
+.estado{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;background:rgba(0,0,0,.55);border:1px solid var(--borde);padding:7px 14px;border-radius:999px;font-size:14px;font-weight:700}
+.estado i{width:9px;height:9px;border-radius:50%;background:#3DDC84;box-shadow:0 0 0 4px rgba(61,220,132,.2)}
+
+/* Secciones */
+section{padding:84px 0}
+.titulo{display:grid;gap:10px;margin-bottom:36px;max-width:640px}
+.titulo h2{font-size:clamp(40px,6vw,64px)}
+.titulo p{color:var(--suave);margin:0}
+
+/* @@NOSOTROS */
+.nosotros .contenedor{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.nosotros img{border-radius:24px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.nosotros p{color:#D8D2C8}
+.cifras{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+.cifras div{background:var(--tarjeta);border:1px solid var(--borde);border-radius:16px;padding:14px}
+.cifras b{display:block;font-family:var(--display);font-size:34px;font-weight:400;color:var(--acento-texto);line-height:1}
+.cifras span{font-size:13px;color:var(--suave)}
+@media (max-width:860px){.nosotros .contenedor{grid-template-columns:1fr;gap:30px}.nosotros img{aspect-ratio:4/3}}
+
+/* @@DESTACADOS */
+.destacados{background:var(--fondo-2)}
+.platos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.plato{background:var(--tarjeta);border:1px solid var(--borde);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.plato img{aspect-ratio:1/1;object-fit:cover;width:100%;background:#222}
+.plato div{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.plato h3{font-family:var(--display);font-weight:400;font-size:26px;margin:0;letter-spacing:.03em}
+.plato p{font-size:14px;color:var(--suave);margin:0;flex:1}
+.plato b{color:var(--acento-texto);font-size:17px}
+.centro{display:flex;justify-content:center;margin-top:34px}
+@media (max-width:980px){.platos{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.platos{grid-template-columns:1fr}}
+
+/* Cómo pedir */
+.modos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.modo{background:var(--tarjeta);border:1px solid var(--borde);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:10px;text-decoration:none}
+.modo:hover{border-color:var(--acento)}
+.modo .ico{width:54px;height:54px;border-radius:16px;background:var(--acento);color:#fff;display:flex;align-items:center;justify-content:center}
+.modo h3{font-family:var(--display);font-weight:400;font-size:30px;margin:4px 0 0;letter-spacing:.03em}
+.modo p{margin:0;color:var(--suave);font-size:15px}
+.modo span{margin-top:auto;color:var(--acento-texto);font-weight:700;font-size:14px}
+@media (max-width:860px){.modos{grid-template-columns:1fr}}
+
+/* @@EVENTOS */
+.eventos .caja{position:relative;border-radius:28px;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;background:var(--tarjeta);border:1px solid var(--borde)}
+.eventos .caja img{width:100%;height:100%;object-fit:cover;min-height:320px}
+.eventos .texto{padding:40px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.eventos ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.eventos li{padding-left:28px;position:relative;color:#D8D2C8}
+.eventos li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:14px;border-radius:50%;background:var(--acento)}
+@media (max-width:860px){.eventos .caja{grid-template-columns:1fr}.eventos .texto{padding:26px}.eventos .caja img{min-height:220px}}
+
+/* Ubicación y horario */
+.ubicacion .contenedor{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:var(--tarjeta);border:1px solid var(--borde);border-radius:22px;padding:26px}
+.panel h3{font-family:var(--display);font-weight:400;font-size:30px;margin:0 0 12px;letter-spacing:.03em}
+.horas{display:grid;gap:8px;font-variant-numeric:tabular-nums}
+.horas div{display:flex;justify-content:space-between;border-bottom:1px solid #242424;padding-bottom:8px;color:#D8D2C8}
+.horas div.hoy{color:var(--texto);font-weight:700}
+.horas div.hoy span:first-child::after{content:" · hoy";color:var(--acento-texto);font-weight:500}
+.dato{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;color:#D8D2C8}
+.dato svg{flex:0 0 auto;color:var(--acento-texto);margin-top:3px}
+@media (max-width:860px){.ubicacion .contenedor{grid-template-columns:1fr}}
+
+/* Llamado final y pie */
+.final{text-align:center;background:radial-gradient(circle at 50% 0%,rgba(225,38,45,.28),transparent 60%),var(--fondo-2)}
+.final h2{font-size:clamp(46px,8vw,88px)}
+.final p{color:var(--suave);margin:10px auto 26px;max-width:520px}
+.final .acciones{justify-content:center}
+footer{padding:34px 0 90px;border-top:1px solid #1F1F1F;color:#8C867E;font-size:13px}
+footer .contenedor{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+.redes{display:flex;gap:10px}
+.redes a{width:42px;height:42px;border-radius:50%;border:1px solid var(--borde);display:flex;align-items:center;justify-content:center;color:var(--texto)}
+.redes a:hover{border-color:var(--acento);color:var(--acento-texto)}
+.flotante{position:fixed;right:18px;bottom:18px;z-index:40;width:58px;height:58px;border-radius:50%;background:#25D366;color:#073B1C;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="contenedor">
+    <a href="#inicio" class="marca"><img src="menu/fotos/logo.png" alt="Logo de Papon Burger &amp; Grill"><span>PAPON <em>BURGER</em></span></a>
+    <nav class="enlaces" id="enlaces" aria-label="Secciones">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#menu">Menú</a>
+      <a href="#pedir">Cómo pedir</a>
+      <a href="#eventos">Eventos</a>
+      <a href="#ubicacion">Ubicación</a>
+    </nav>
+    <a class="btn prin js-menu" href="menu/index.html">Ver menú y pedir</a>
+    <button class="abrir-menu" id="abrir-menu" aria-label="Abrir menú de secciones" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="inicio">
+  <!-- ===== @@PORTADA ===== -->
+  <div class="portada">
+    <img class="fondo" src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1800&q=75" alt="Hamburguesa de carne magra a la parrilla">
+    <div class="contenedor">
+      <div class="estado" id="estado"><i></i><span>Abierto ahora</span></div>
+      <h1 class="display">100% CARNE MAGRA, <em>HECHA A LA PARRILLA</em></h1>
+      <p>Hamburguesas, cortes y pollo a la brasa en Santo Domingo Este. Pide para llevar, delivery o ven a comer con nosotros.</p>
+      <div class="acciones">
+        <a class="btn prin js-menu" href="menu/index.html">Ver menú y pedir</a>
+        <a class="btn sec js-wa" href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== @@NOSOTROS ===== -->
+  <section class="nosotros" id="nosotros">
+    <div class="contenedor">
+      <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=75" alt="Corte de carne a la parrilla" loading="lazy">
+      <div>
+        <div class="titulo" style="margin-bottom:14px">
+          <span class="eyebrow">Nuestra historia</span>
+          <h2 class="display">SABOR DE PARRILLA, SIN EXCESOS</h2>
+        </div>
+        <p>Papon nació con una idea sencilla: que una buena hamburguesa no tiene que ser pesada. Usamos carne magra, la hacemos al momento en la parrilla y la servimos con ingredientes frescos y nuestras salsas de la casa.</p>
+        <p>Desde Santo Domingo Este atendemos a familias, grupos de amigos y oficinas que buscan comer rico sin complicarse.</p>
+        <div class="cifras">
+          <div><b>100%</b><span>carne magra</span></div>
+          <div><b>3</b><span>formas de pedir</span></div>
+          <div><b>7</b><span>días a la semana</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== @@DESTACADOS ===== -->
+  <section class="destacados" id="menu">
+    <div class="contenedor">
+      <div class="titulo">
+        <span class="eyebrow">Lo más pedido</span>
+        <h2 class="display">LOS FAVORITOS DE LA CASA</h2>
+        <p>Una probadita de nuestro menú. El menú completo, con todos los precios y combos, está a un toque.</p>
+      </div>
+      <div class="platos">
+        <article class="plato"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=75" alt="La Papon" loading="lazy"><div><h3>La Papon</h3><p>6 oz de carne magra, cheddar, tocineta, cebolla caramelizada y salsa Papon.</p><b>RD$ 545</b></div></article>
+        <article class="plato"><img src="https://images.unsplash.com/photo-1530554764233-e79e16c91d08?auto=format&fit=crop&w=700&q=75" alt="La Grill Master" loading="lazy"><div><h3>La Grill Master</h3><p>8 oz madurada a la parrilla, provolone y cebolla al vino tinto.</p><b>RD$ 1,195</b></div></article>
+        <article class="plato"><img src="https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=700&q=75" alt="Alitas BBQ" loading="lazy"><div><h3>Alitas BBQ</h3><p>8 alitas bañadas en BBQ o búfalo, con dip de la casa.</p><b>RD$ 495</b></div></article>
+        <article class="plato"><img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=700&q=75" alt="Papas Papon" loading="lazy"><div><h3>Papas Papon</h3><p>Papas fritas con cheddar derretido, tocineta y cebollín.</p><b>RD$ 295</b></div></article>
+      </div>
+      <div class="centro"><a class="btn prin js-menu" href="menu/index.html">Ver el menú completo</a></div>
+    </div>
+  </section>
+
+  <!-- ===== Cómo pedir ===== -->
+  <section id="pedir">
+    <div class="contenedor">
+      <div class="titulo">
+        <span class="eyebrow">Cómo pedir</span>
+        <h2 class="display">COMO TE QUEDE MEJOR</h2>
+        <p>Elige en el menú cómo quieres tu pedido y te llega por WhatsApp, completo y con el total.</p>
+      </div>
+      <div class="modos">
+        <a class="modo js-menu" href="menu/index.html"><div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></div><h3>Para llevar</h3><p>Haz tu pedido y pasa a buscarlo sin hacer fila.</p><span>Pedir para llevar →</span></a>
+        <a class="modo js-menu" href="menu/index.html"><div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="17" r="2.5"/><circle cx="18" cy="17" r="2.5"/><path d="M8.5 17h7M4 13h7l2-5h3l2.5 6.5"/></svg></div><h3>Delivery</h3><p>Te lo llevamos a tu casa u oficina en Santo Domingo Este.</p><span>Pedir delivery →</span></a>
+        <a class="modo" href="#ubicacion"><div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h16M6 10v9M18 10v9M8 6h8l2 4H6z"/></svg></div><h3>Comer aquí</h3><p>Ven al local y pide desde tu mesa escaneando el QR.</p><span>Cómo llegar →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== @@EVENTOS ===== -->
+  <section class="eventos" id="eventos">
+    <div class="contenedor">
+      <div class="caja">
+        <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=1200&q=75" alt="Pinchos mixtos a la parrilla" loading="lazy">
+        <div class="texto">
+          <span class="eyebrow">Eventos y oficinas</span>
+          <h2 class="display" style="font-size:clamp(38px,5vw,56px)">¿COMIDA PARA UN GRUPO?</h2>
+          <p style="margin:0;color:#D8D2C8">Cumpleaños, reuniones de trabajo o un partido con los amigos: preparamos combos para grupos con entrega a la hora que nos digas.</p>
+          <ul><li>Combos para 5, 10 o más personas</li><li>Entrega en oficinas</li><li>Pedidos con anticipación</li></ul>
+          <div><a class="btn prin js-wa-evento" href="#" target="_blank" rel="noopener">Cotizar por WhatsApp</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Ubicación y horario ===== -->
+  <section class="ubicacion" id="ubicacion">
+    <div class="contenedor">
+      <div class="panel">
+        <h3>Dónde estamos</h3>
+        <div class="dato"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span id="direccion"></span></div>
+        <div class="dato"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span id="telefono"></span></div>
+        <div class="acciones"><a class="btn prin" id="mapa" href="#" target="_blank" rel="noopener">Cómo llegar</a><a class="btn sec js-wa" href="#" target="_blank" rel="noopener">WhatsApp</a></div>
+      </div>
+      <div class="panel">
+        <h3>Horario</h3>
+        <div class="horas" id="horas"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="contenedor">
+      <h2 class="display">¿YA TE DIO HAMBRE?</h2>
+      <p>Mira el menú completo, arma tu pedido y te llega por WhatsApp en un momento.</p>
+      <div class="acciones"><a class="btn prin js-menu" href="menu/index.html">Ver menú y pedir</a></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="contenedor">
+    <span>© <span id="anio"></span> Papon Burger &amp; Grill · Santo Domingo Este</span>
+    <div class="redes" id="redes"></div>
+    <span>Diseño y desarrollo: Kengis Florentino</span>
+  </div>
+</footer>
+
+<a class="flotante js-wa" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+</a>
+
+<script>
+/* =========================================================
+   @@NEGOCIO — Datos del negocio (cámbialos para cada cliente)
+   ========================================================= */
+const NEGOCIO = {
+  nombre: "Papon Burger & Grill",
+  whatsapp: "19785664534",                        // 1 + código de área + número, todo junto
+  telefono: "(978) 566-4534",
+  direccion: "C. Principal, Santo Domingo Este",
+  mapa: "",                                       // Enlace de Google Maps del lugar exacto. Vacío = busca la dirección
+  menu:"menu/index.html",   // Enlace del menú digital (está en la carpeta menu)
+  horario: { abre: "17:30", cierra: "00:30" },    // Formato 24 horas, igual todos los días
+  diasCerrado: [],                                // Ej.: [1] = cerrado los lunes (0 domingo … 6 sábado)
+  redes: { instagram: "", facebook: "", tiktok: "" }
+};
+
+/* ---------- Funcionamiento (no hace falta tocar) ---------- */
+const $ = s => document.querySelector(s);
+const num = NEGOCIO.whatsapp.replace(/\D/g, "");
+const wa = t => `https://api.whatsapp.com/send?phone=${num}&text=${encodeURIComponent(t)}`;
+document.querySelectorAll(".js-wa").forEach(a => a.href = wa(`¡Hola ${NEGOCIO.nombre}! Tengo una pregunta: `));
+document.querySelectorAll(".js-wa-evento").forEach(a => a.href = wa(`¡Hola ${NEGOCIO.nombre}! Quiero cotizar un pedido para un grupo. Somos __ personas, para el día __.`));
+document.querySelectorAll(".js-menu").forEach(a => a.href = NEGOCIO.menu);
+$("#direccion").textContent = NEGOCIO.direccion;
+$("#telefono").textContent = NEGOCIO.telefono;
+const m = (NEGOCIO.mapa || "").trim();
+$("#mapa").href = m.startsWith("http") ? m : "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(m || NEGOCIO.direccion);
+$("#anio").textContent = new Date().getFullYear();
+
+/* Horario de la semana y estado abierto/cerrado */
+const DIAS = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+const min = h => { const [a, b] = h.split(":").map(Number); return a * 60 + (b || 0); };
+const bonita = h => { const [a, b] = h.split(":").map(Number); return `${(a % 12) || 12}:${String(b || 0).padStart(2, "0")} ${a >= 12 ? "PM" : "AM"}`; };
+const textoHora = `${bonita(NEGOCIO.horario.abre)} – ${bonita(NEGOCIO.horario.cierra)}`;
+const hoy = new Date().getDay();
+$("#horas").innerHTML = [1,2,3,4,5,6,0].map(d => `<div class="${d === hoy ? "hoy" : ""}"><span>${DIAS[d]}</span><span>${NEGOCIO.diasCerrado.includes(d) ? "Cerrado" : textoHora}</span></div>`).join("");
+function estado(){
+  const ahora = new Date(), t = ahora.getHours() * 60 + ahora.getMinutes();
+  const a = min(NEGOCIO.horario.abre), c = min(NEGOCIO.horario.cierra);
+  const dentro = a < c ? (t >= a && t < c) : (t >= a || t < c);
+  const diaHorario = a < c || t >= a ? ahora.getDay() : (ahora.getDay() + 6) % 7;   // después de medianoche cuenta el día anterior
+  const abierto = dentro && !NEGOCIO.diasCerrado.includes(diaHorario);
+  $("#estado span").textContent = abierto ? "Abierto ahora" : `Cerrado · Abrimos a las ${bonita(NEGOCIO.horario.abre)}`;
+  $("#estado i").style.background = abierto ? "#3DDC84" : "#8C867E";
+  $("#estado i").style.boxShadow = abierto ? "0 0 0 4px rgba(61,220,132,.2)" : "none";
+}
+estado(); setInterval(estado, 60000);
+
+/* Redes */
+const ICONOS = {
+  instagram:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>',
+  facebook:'<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8z"/></svg>',
+  tiktok:'<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 3c.4 2.3 1.9 3.8 4 4v3.2c-1.5 0-2.8-.4-4-1.2V15a6 6 0 1 1-6-6v3.3A2.7 2.7 0 1 0 12.7 15V3z"/></svg>'
+};
+$("#redes").innerHTML = Object.entries(NEGOCIO.redes).filter(([, u]) => u).map(([r, u]) => `<a href="${u}" target="_blank" rel="noopener" aria-label="${r}">${ICONOS[r]}</a>`).join("");
+
+/* Menú del celular */
+$("#abrir-menu").addEventListener("click", () => {
+  const abierto = $("#enlaces").classList.toggle("abierto");
+  $("#abrir-menu").setAttribute("aria-expanded", abierto);
+});
+document.querySelectorAll("#enlaces a").forEach(a => a.addEventListener("click", () => { $("#enlaces").classList.remove("abierto"); $("#abrir-menu").setAttribute("aria-expanded", false); }));
+/* Si una foto no carga, se oculta en vez de mostrar el ícono roto */
+document.querySelectorAll("img").forEach(i => { const f = () => i.classList.add("roto"); if (i.complete && !i.naturalWidth) f(); else i.addEventListener("error", f); });
+</script>
+</body>
+</html>
